@@ -1,3 +1,4 @@
 (test
  (name test_labwork2)
- (libraries labwork2 qcheck qcheck-ounit ounit2))
+ (libraries labwork2 qcheck qcheck-ounit ounit2)
+ (preprocess (pps bisect_ppx)))

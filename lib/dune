@@ -2,4 +2,4 @@
  (name labwork2)
  (public_name labwork2)
  (modules rb_tree rb_dict labwork2)
- (libraries))
+ (preprocess (pps bisect_ppx)))

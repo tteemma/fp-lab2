@@ -1,51 +1,66 @@
 type color = R | B
 
-type ('k,'v) node =
+type ('k, 'v) node =
   | E
-  | T of color * ('k,'v) node * 'k * 'v * ('k,'v) node
+  | T of {
+      color : color;
+      left : ('k, 'v) node;
+      key : 'k;
+      value : 'v;
+      right : ('k, 'v) node;
+    }
 
 let empty = E
 
 let rec mem cmp x = function
   | E -> false
-  | T(_, a, y, _, b) ->
-      let c = cmp x y in
-      if c < 0 then mem cmp x a
-      else if c > 0 then mem cmp x b
+  | T { color = _; left; key; value = _; right } ->
+      let c = cmp x key in
+      if c < 0 then mem cmp x left
+      else if c > 0 then mem cmp x right
       else true
 
 let rec lookup cmp x = function
   | E -> None
-  | T(_, a, y, v, b) ->
-      let c = cmp x y in
-      if c < 0 then lookup cmp x a
-      else if c > 0 then lookup cmp x b
-      else Some v
+  | T { color = _; left; key; value; right } ->
+      let c = cmp x key in
+      if c < 0 then lookup cmp x left
+      else if c > 0 then lookup cmp x right
+      else Some value
 
 let balance = function
-  | B, T(R, T(R,a,xk,xv,b), yk, yv, c), zk, zv, d
-  | B, T(R, a, xk, xv, T(R,b,yk,yv,c)), zk, zv, d
-  | B, a, xk, xv, T(R, T(R,b,yk,yv,c), zk, zv, d)
-  | B, a, xk, xv, T(R, b, yk, yv, T(R,c,zk,zv,d)) ->
-      T(R, T(B,a,xk,xv,b), yk, yv, T(B,c,zk,zv,d))
-  | col, a, k, v, b -> T(col, a, k, v, b)
+  | B, T { color = R; left = T { color = R; left = a; key = xk; value = xv; right = b };
+            key = yk; value = yv; right = c }, zk, zv, d
+  | B, T { color = R; left = a; key = xk; value = xv;
+            right = T { color = R; left = b; key = yk; value = yv; right = c } }, zk, zv, d
+  | B, a, xk, xv, T { color = R; left = T { color = R; left = b; key = yk; value = yv; right = c };
+                      key = zk; value = zv; right = d }
+  | B, a, xk, xv, T { color = R; left = b; key = yk; value = yv;
+                      right = T { color = R; left = c; key = zk; value = zv; right = d } } ->
+      T { color = R;
+          left = T { color = B; left = a; key = xk; value = xv; right = b };
+          key = yk; value = yv;
+          right = T { color = B; left = c; key = zk; value = zv; right = d } }
+  | col, a, k, v, b ->
+      T { color = col; left = a; key = k; value = v; right = b }
 
 let insert cmp k v s =
   let rec ins = function
-    | E -> T(R,E,k,v,E)
-    | T(col, a, xk, xv, b) ->
-        let c = cmp k xk in
-        if c < 0 then balance (col, ins a, xk, xv, b)
-        else if c > 0 then balance (col, a, xk, xv, ins b)
-        else T(col, a, xk, v, b)
+    | E -> T { color = R; left = E; key = k; value = v; right = E }
+    | T { color; left; key; value; right } ->
+        let c = cmp k key in
+        if c < 0 then balance (color, ins left, key, value, right)
+        else if c > 0 then balance (color, left, key, value, ins right)
+        else T { color; left; key; value = v; right }
   in
   match ins s with
-  | T(_, a, xk, xv, b) -> T(B, a, xk, xv, b)
+  | T t -> T { t with color = B }
   | E -> E
 
 let rec to_inorder = function
   | E -> []
-  | T(_, l, k, v, r) -> (to_inorder l) @ ((k,v) :: to_inorder r)
+  | T { left; key; value; right; _ } ->
+      (to_inorder left) @ ((key, value) :: to_inorder right)
 
 let of_sorted kvs =
   let rec build n lst =
@@ -56,16 +71,16 @@ let of_sorted kvs =
       let (l, lst1) = build left_n lst in
       match lst1 with
       | [] -> (E, [])
-      | (k,v)::rest ->
+      | (k, v) :: rest ->
           let (r, rest') = build right_n rest in
-          (T(B, l, k, v, r), rest')
+          (T { color = B; left = l; key = k; value = v; right = r }, rest')
   in
   fst (build (List.length kvs) kvs)
 
 let remove_key cmp key t =
   let rec drop = function
     | [] -> []
-    | (k,_)::xs when cmp k key = 0 -> xs
-    | x::xs -> x :: drop xs
+    | (k, _) :: xs when cmp k key = 0 -> xs
+    | x :: xs -> x :: drop xs
   in
   of_sorted (drop (to_inorder t))

@@ -1,0 +1,33 @@
+name: Builds, tests & co
+
+on:
+  - push
+  - pull_request
+
+permissions: read-all
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout tree
+        uses: actions/checkout@v5
+
+      - name: Set-up OCaml
+        uses: ocaml/setup-ocaml@v3
+        with:
+          ocaml-compiler: 4.14.2
+
+      - name: Install deps (tests & dev)
+        run: |
+          opam update
+          opam install dune -y
+          opam install . --deps-only --with-test -y
+          opam install bisect_ppx ounit2 qcheck qcheck-ounit -y
+
+      - name: Dune @check
+        run: opam exec -- dune build @check
+
+      - name: Run tests
+        run: opam exec -- dune runtest

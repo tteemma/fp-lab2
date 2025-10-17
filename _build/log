@@ -1,0 +1,26 @@
+# dune exec labwork2_cli
+# OCAMLPARAM: unset
+# Shared cache: enabled-except-user-rules
+# Shared cache location: /Users/temo4ka/.cache/dune/db
+# Workspace root: /Users/temo4ka/ITMO/semester4/fp/lab-2
+# Auto-detected concurrency: 8
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; instrument_with = []
+#  }
+$ /Users/temo4ka/.opam/5.2.1/bin/ocamlc.opt -config > /var/folders/vr/b1yb1ty94897wqhzvn2bzz_c0000gn/T/dune_d632a2_output
+$ (cd _build/default && /Users/temo4ka/.opam/5.2.1/bin/ocamldep.opt -modules -impl lib/labwork2.ml) > _build/default/lib/.labwork2.objs/labwork2.impl.d
+$ (cd _build/default && /Users/temo4ka/.opam/5.2.1/bin/ocamldep.opt -modules -intf lib/labwork2.mli) > _build/default/lib/.labwork2.objs/labwork2.intf.d
+$ (cd _build/default && /Users/temo4ka/.opam/5.2.1/bin/ocamldep.opt -modules -impl lib/rb_tree.ml) > _build/default/lib/.labwork2.objs/labwork2__Rb_tree.impl.d
+$ (cd _build/default && /Users/temo4ka/.opam/5.2.1/bin/ocamlc.opt -w @1..3@5..28@31..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -bin-annot-occurrences -I lib/.labwork2.objs/byte -no-alias-deps -opaque -open Labwork2__ -o lib/.labwork2.objs/byte/labwork2.cmi -c -intf lib/labwork2.mli)
+$ (cd _build/default && /Users/temo4ka/.opam/5.2.1/bin/ocamlc.opt -w @1..3@5..28@31..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -bin-annot-occurrences -I bin/.main.eobjs/byte -I lib/.labwork2.objs/byte -no-alias-deps -opaque -o bin/.main.eobjs/byte/dune__exe__Main.cmi -c -intf bin/main.mli)
+$ (cd _build/default && /Users/temo4ka/.opam/5.2.1/bin/ocamlopt.opt -w @1..3@5..28@31..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I lib/.labwork2.objs/byte -I lib/.labwork2.objs/native -cmi-file lib/.labwork2.objs/byte/labwork2.cmi -no-alias-deps -opaque -open Labwork2__ -o lib/.labwork2.objs/native/labwork2.cmx -c -impl lib/labwork2.ml)
+$ (cd _build/default && /Users/temo4ka/.opam/5.2.1/bin/ocamlopt.opt -w @1..3@5..28@31..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I bin/.main.eobjs/byte -I bin/.main.eobjs/native -I lib/.labwork2.objs/byte -I lib/.labwork2.objs/native -cmi-file bin/.main.eobjs/byte/dune__exe__Main.cmi -no-alias-deps -opaque -o bin/.main.eobjs/native/dune__exe__Main.cmx -c -impl bin/main.ml)
+$ (cd _build/default && /Users/temo4ka/.opam/5.2.1/bin/ocamlopt.opt -w @1..3@5..28@31..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I lib/.labwork2.objs/byte -I lib/.labwork2.objs/native -cmi-file lib/.labwork2.objs/byte/labwork2__Rb_tree.cmi -no-alias-deps -opaque -open Labwork2__ -o lib/.labwork2.objs/native/labwork2__Rb_tree.cmx -c -impl lib/rb_tree.ml)
+$ (cd _build/default && /Users/temo4ka/.opam/5.2.1/bin/ocamlopt.opt -w @1..3@5..28@31..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o lib/labwork2.cmxa lib/.labwork2.objs/native/labwork2__.cmx lib/.labwork2.objs/native/labwork2__Rb_tree.cmx lib/.labwork2.objs/native/labwork2__Rb_dict.cmx lib/.labwork2.objs/native/labwork2.cmx)
+$ (cd _build/default && /Users/temo4ka/.opam/5.2.1/bin/ocamlopt.opt -w @1..3@5..28@31..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o bin/main.exe lib/labwork2.cmxa bin/.main.eobjs/native/dune__exe__Main.cmx)

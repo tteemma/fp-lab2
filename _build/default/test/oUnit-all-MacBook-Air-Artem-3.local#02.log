@@ -1,0 +1,18 @@
+2025-10-17T23:22:45+00:00 MacBook-Air-Artem-3.local#02 I: Start test all:1:remove.
+2025-10-17T23:22:45+00:00 MacBook-Air-Artem-3.local#02 I: Test all:1:remove is successful.
+2025-10-17T23:22:45+00:00 MacBook-Air-Artem-3.local#02 I: End test all:1:remove.
+2025-10-17T23:22:45+00:00 MacBook-Air-Artem-3.local#02 I: Start test all:3:monoid identity.
+2025-10-17T23:22:45+00:00 MacBook-Air-Artem-3.local#02 I: Test all:3:monoid identity is successful.
+2025-10-17T23:22:45+00:00 MacBook-Air-Artem-3.local#02 I: End test all:3:monoid identity.
+2025-10-17T23:22:45+00:00 MacBook-Air-Artem-3.local#02 I: Start test all:5:empty identity.
+2025-10-17T23:22:45+00:00 MacBook-Air-Artem-3.local#02 I: 
+2025-10-17T23:22:45+00:00 MacBook-Air-Artem-3.local#02 I: law empty identity: 100 relevant cases (100 total)
+2025-10-17T23:22:45+00:00 MacBook-Air-Artem-3.local#02 I: 
+2025-10-17T23:22:45+00:00 MacBook-Air-Artem-3.local#02 I: Test all:5:empty identity is successful.
+2025-10-17T23:22:45+00:00 MacBook-Air-Artem-3.local#02 I: End test all:5:empty identity.
+2025-10-17T23:22:45+00:00 MacBook-Air-Artem-3.local#02 I: Start test all:6:find after add.
+2025-10-17T23:22:45+00:00 MacBook-Air-Artem-3.local#02 I: 
+2025-10-17T23:22:45+00:00 MacBook-Air-Artem-3.local#02 I: law find after add: 100 relevant cases (100 total)
+2025-10-17T23:22:45+00:00 MacBook-Air-Artem-3.local#02 I: 
+2025-10-17T23:22:45+00:00 MacBook-Air-Artem-3.local#02 I: Test all:6:find after add is successful.
+2025-10-17T23:22:45+00:00 MacBook-Air-Artem-3.local#02 I: End test all:6:find after add.

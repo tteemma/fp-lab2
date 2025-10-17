@@ -1,0 +1,4 @@
+(executable
+ (name main)
+ (public_name labwork2_cli)
+ (libraries labwork2))

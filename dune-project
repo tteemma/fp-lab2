@@ -1,0 +1,7 @@
+(lang dune 3.14)
+(name labwork2)
+(generate_opam_files true)
+(license MIT)
+(authors "Mironenko Artem <artemm.mironenko@yandex.ru>")
+(maintainers "Mironenko Artem <artemm.mironenko@yandex.ru")
+(source (github tteemma/fp-lab2))

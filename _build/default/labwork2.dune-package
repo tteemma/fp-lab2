@@ -1,0 +1,77 @@
+(lang dune 3.20)
+(name labwork2)
+(version 0.1.0)
+(sections (lib .) (libexec .) (bin ../../bin) (doc ../../doc/labwork2))
+(files
+ (lib
+  (META
+   dune-package
+   labwork2.a
+   labwork2.cma
+   labwork2.cmi
+   labwork2.cmt
+   labwork2.cmti
+   labwork2.cmx
+   labwork2.cmxa
+   labwork2.ml
+   labwork2.mli
+   labwork2__.cmi
+   labwork2__.cmt
+   labwork2__.cmx
+   labwork2__.ml
+   labwork2__Rb_dict.cmi
+   labwork2__Rb_dict.cmt
+   labwork2__Rb_dict.cmti
+   labwork2__Rb_dict.cmx
+   labwork2__Rb_tree.cmi
+   labwork2__Rb_tree.cmt
+   labwork2__Rb_tree.cmti
+   labwork2__Rb_tree.cmx
+   opam
+   rb_dict.ml
+   rb_dict.mli
+   rb_tree.ml
+   rb_tree.mli))
+ (libexec (labwork2.cmxs))
+ (bin (labwork2_cli))
+ (doc (README.md)))
+(library
+ (name labwork2)
+ (kind normal)
+ (archives (byte labwork2.cma) (native labwork2.cmxa))
+ (plugins (byte labwork2.cma) (native labwork2.cmxs))
+ (native_archives labwork2.a)
+ (main_module_name Labwork2)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name labwork2__)
+     (visibility public)
+     (kind alias)
+     (source (path Labwork2__) (impl (path labwork2__.ml-gen))))
+    (name Labwork2)
+    (modules
+     (module
+      (obj_name labwork2)
+      (visibility public)
+      (source
+       (path Labwork2)
+       (intf (path labwork2.mli))
+       (impl (path labwork2.ml))))
+     (module
+      (obj_name labwork2__Rb_dict)
+      (visibility public)
+      (source
+       (path Rb_dict)
+       (intf (path rb_dict.mli))
+       (impl (path rb_dict.ml))))
+     (module
+      (obj_name labwork2__Rb_tree)
+      (visibility public)
+      (source
+       (path Rb_tree)
+       (intf (path rb_tree.mli))
+       (impl (path rb_tree.ml))))))
+   (wrapped true))))

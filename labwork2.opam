@@ -1,0 +1,27 @@
+opam-version: "2.0"
+version: "0.1.0"
+synopsis: "FP lab #2: rb-dict (immutable dict on Red-Black Tree)"
+maintainer: ["Mironenko Artem <artemm.mironenko@yandex.ru"]
+authors: ["Mironenko Artem <artemm.mironenko@yandex.ru>"]
+license: "MIT"
+homepage: "https://github.com/tteemma/fp-lab2"
+bug-reports: "https://github.com/tteemma/fp-lab2/issues"
+depends: [
+  "dune" {>= "3.14"}
+  "odoc" {with-doc}
+]
+build: [
+  ["dune" "subst"] {dev}
+  [
+    "dune"
+    "build"
+    "-p"
+    name
+    "-j"
+    jobs
+    "@install"
+    "@runtest" {with-test}
+    "@doc" {with-doc}
+  ]
+]
+dev-repo: "git+https://github.com/tteemma/fp-lab2.git"

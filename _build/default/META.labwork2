@@ -1,0 +1,7 @@
+version = "0.1.0"
+description = ""
+requires = ""
+archive(byte) = "labwork2.cma"
+archive(native) = "labwork2.cmxa"
+plugin(byte) = "labwork2.cma"
+plugin(native) = "labwork2.cmxs"
